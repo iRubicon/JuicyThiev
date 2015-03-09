@@ -26,7 +26,7 @@ public class Thieving implements Strategy{
             return Stalls.Gem;
         }
 
-        return Stalls.Bakers;
+        return Stalls.Bakers;//Failsafe, incase it cant detect the stall it will use the Bakers stall as a fallback.
     }
 
     public int getID(Stalls stall){
@@ -41,13 +41,13 @@ public class Thieving implements Strategy{
         }else if(stall == Stalls.Gem){
             return 2562;
         }
-        return 2561;
+        return 2561;//Failsafe, incase it cant detect the stall it will use the Bakers stall as a fallback.
 
     }
 
 
     public boolean activate() {
-        if(Players.getMyPlayer().getAnimation() == -1 && Inventory.isFull() == false){
+        if(Players.getMyPlayer().getAnimation() == -1 && !Inventory.isFull()){
             return true;
         }
         return false;
@@ -56,11 +56,13 @@ public class Thieving implements Strategy{
 
     public void execute() {
         SceneObject[] stall = SceneObjects.getNearest(getID(getStall()));
-       
         try{
-            stall[0].interact(1);
-            Launch.thievs += 1;
-            Time.sleep(1500);
+            if(stall != null && stall[0] != null){
+                stall[0].interact(1);
+                Launch.thievs += 1;
+                Time.sleep(1500);
+            }
+
         }catch(ArrayIndexOutOfBoundsException e){
 
         }

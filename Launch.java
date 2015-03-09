@@ -23,7 +23,7 @@ import java.util.ArrayList;
         description = "Thieving on all stalls!!",
         name = "JuicyThiev",
         servers = { "PKHonor" },
-        version = 1.0)
+        version = 1.2)
 public class Launch extends Script implements Paintable {
     private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
     Timer timer;
