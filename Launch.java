@@ -23,7 +23,7 @@ import java.util.ArrayList;
         description = "Thieving on all stalls!!",
         name = "JuicyThiev",
         servers = { "PKHonor" },
-        version = 1.2)
+        version = 1.5)
 public class Launch extends Script implements Paintable {
     private final ArrayList<Strategy> strategies = new ArrayList<Strategy>();
     Timer timer;
@@ -39,7 +39,7 @@ public class Launch extends Script implements Paintable {
         timer = new Timer();
 
         try {
-            URL url = new URL("http://services.runescape.com/m=rswikiimages/en/2012/1/Thieving_big-13011312.png");
+            URL url = new URL("http://oi57.tinypic.com/2ldj34p.jpg");
             thiev = ImageIO.read(url);
         }catch(IOException e){
             e.printStackTrace();
@@ -53,25 +53,18 @@ public class Launch extends Script implements Paintable {
 
 
     public void paint(Graphics g) {
-        
-        g.setColor(Color.DARK_GRAY);
-        g.drawRect(7, 344, 502, 130);
-        g.fillRect(7, 344, 502, 130);
-        g.setColor(Color.MAGENTA);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 26));
-        g.drawString("Juicy Thiev", 17, 366);
-        g.setColor(Color.WHITE);
+        g.setColor(Color.white);
+        g.drawImage(thiev, 2, 340, null);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-        g.drawString("Version 1.0", 30, 384);
-        g.drawString("Author: Rubicon", 30, 404);
-        g.drawString("Time ran: " + timer.toString(), 30, 424);
-        g.drawString("Stall: " + Thieving.getStall(), 150, 384);
-         g.drawString("Total Thievs: " + thievs, 150, 404);
-        g.drawString("XP gained: " + getXpGained(), 150, 424);
-        g.drawString("XP TTL: " + Skill.THIEVING.getRemaining(), 150, 444);
-         g.drawString("Current Level: " + Skill.THIEVING.getRealLevel(), 150, 464);
+        g.drawString("1.0", 100, 389);//Version
+        g.drawString("Rubicon", 95, 406);//Author
+        g.drawString(timer.toString(), 115, 425);//Time Ran
+        g.drawString(""+Thieving.getStall(), 75, 442);//Current Stall
+         g.drawString(""+thievs, 276, 443);//Total Thievs
+        g.drawString(""+getXpGained(), 265, 425);//XP Gained
+        g.drawString(""+Skill.THIEVING.getRemaining(), 231, 406);//XP TTL
+         g.drawString("" + Skill.THIEVING.getRealLevel(), 289, 389);//Current Level
 
-        g.drawImage(thiev, 390, 360, null);
 
     }
 
